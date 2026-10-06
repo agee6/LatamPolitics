@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LatamPolitics — South America, Left and Right since 1970</title>
+<meta name="description" content="An animated month-by-month map of which South American countries were governed by the left, the centre or the right, from 1970 to today.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="masthead">
+    <h1>Latam<span class="accent">Politics</span></h1>
+    <span class="tagline">South America, left and right, month by month since 1970</span>
+    <span class="spacer"></span>
+    <span class="nav-note"><kbd>space</kbd> play · <kbd>←</kbd><kbd>→</kbd> step · <kbd>shift</kbd>+<kbd>←</kbd><kbd>→</kbd> year</span>
+  </header>
+
+  <div class="stage">
+
+    <div class="map-panel">
+      <svg id="map" role="img" aria-label="Political colour map of South America"></svg>
+      <div class="date-stamp">
+        <span class="ds-month" id="stamp-month">October</span>
+        <span class="ds-year" id="stamp-year">2026</span>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <section class="card">
+        <h2>Who governs</h2>
+        <div id="legend"></div>
+        <div class="legend-foot">
+          <span class="legend-sw" id="hatch-key"></span>
+          <span>Diagonal hatching marks an unelected government — a junta, coup or self-coup.</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>At this date</h2>
+        <div class="roster" id="roster"></div>
+      </section>
+    </aside>
+
+  </div>
+
+  <section class="timeline">
+    <div class="tl-controls">
+      <button class="play" id="play" aria-pressed="false"><span class="glyph">&#9654;</span> Play</button>
+      <button class="tl-btn" id="step-back" title="Back one month" aria-label="Back one month">&minus;1&thinsp;m</button>
+      <button class="tl-btn" id="step-fwd" title="Forward one month" aria-label="Forward one month">+1&thinsp;m</button>
+      <button class="tl-btn" id="reset" title="Jump to January 1970">1970</button>
+      <button class="tl-btn" id="today" title="Jump to the present month">Today</button>
+
+      <label class="tl-field" for="speed">Speed
+        <select id="speed">
+          <option value="2">2 months/s</option>
+          <option value="6" selected>6 months/s</option>
+          <option value="14">14 months/s</option>
+          <option value="30">30 months/s</option>
+        </select>
+      </label>
+
+      <label class="tl-field" for="loop"><input type="checkbox" id="loop" checked> Loop</label>
+
+      <span class="tl-readout" id="readout">OCT 2026</span>
+    </div>
+
+    <div class="tl-chart-wrap">
+      <svg id="balance" role="img" aria-label="Count of South American governments by ideology over time. Drag to scrub."></svg>
+      <input type="range" class="scrub" id="scrub" value="0" aria-label="Timeline month">
+      <div id="decades" style="position:relative;height:13px"></div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>
+      Colour shows the ideology of each country's head of government at the sampled date
+      (the 15th of each month). Twelve sovereign states are counted; French Guiana and the
+      Falklands/Malvinas are shown uncoloured as non-sovereign territories.
+      Placing a government on a single left&ndash;right axis is a simplification, and several
+      cases here are genuinely contested — see <a href="README.md">README.md</a> for the
+      editorial choices and the full source list.
+    </p>
+    <p>
+      Country outlines derived from <a href="https://www.naturalearthdata.com/">Natural Earth</a>
+      1:50m admin-0 boundaries (public domain).
+    </p>
+  </footer>
+
+</div>
+
+<div id="tooltip" role="tooltip" aria-live="polite">
+  <div class="tt-stripe"></div>
+  <div class="tt-body">
+    <div class="tt-country"><span class="tt-flag"></span><span class="tt-country-name"></span></div>
+    <div class="tt-leader"></div>
+    <div class="tt-party">
+      <span class="tt-chip"></span>
+      <span>
+        <span class="tt-party-name"></span><br>
+        <span class="tt-party-en"></span>
+      </span>
+    </div>
+    <div class="tt-term"></div>
+    <div class="tt-tags"></div>
+    <div class="tt-note"></div>
+  </div>
+</div>
+
+<script src="data/geo.js"></script>
+<script src="data/leaders.js"></script>
+<script src="js/map.js"></script>
+<script src="js/timeline.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
